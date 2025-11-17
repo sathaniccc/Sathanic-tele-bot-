@@ -1,6 +1,6 @@
 # 🚀 Sathanic — Futuristic Multi-Feature Telegram Bot
 
-[![Status](https://img.shields.io/badge/status-production-brightgreen)](https://github.com/yourusername/sathanic-telegram-bot)
+[![Status](https://img.shields.io/badge/status-production-brightgreen)](https://github.com/sathaniccc/sathanic-telegram-bot)
 [![Node](https://img.shields.io/badge/node-%3E=18.0-blue)](https://nodejs.org/)
 [![Koyeb Ready](https://img.shields.io/badge/hosting-Koyeb-purple)](https://koyeb.com)
 
