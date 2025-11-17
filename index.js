@@ -17,43 +17,54 @@ const mainMenu = {
 };
 
 bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, "👋 Welcome to Sathanic tele bot the Multi-Feature Telegram Bot!\nChoose an option👇", mainMenu);
+    bot.sendMessage(
+        msg.chat.id,
+        "👋 *Welcome to Sathanic Tele Bot!*\nChoose an option 👇",
+        { ...mainMenu, parse_mode: "Markdown" }
+    );
 });
 
 bot.on("callback_query", async (query) => {
     const chatId = query.message.chat.id;
+    const data = query.data;
 
-    if (query.data === "yt") {
-        return bot.sendMessage(chatId, "🎬 Send the YouTube video link you want to download:");
+    try {
+        if (data === "yt") {
+            return bot.sendMessage(chatId, "🎬 Send the YouTube video link to download:");
+        }
+
+        if (data === "ig") {
+            return bot.sendMessage(chatId, "📱 Send the Instagram Reel link:");
+        }
+
+        if (data === "enhance") {
+            return bot.sendMessage(chatId, "🖼 Send the photo to enhance:");
+        }
+
+        if (data === "song") {
+            return bot.sendMessage(chatId, "🎧 Send the YouTube link to extract MP3:");
+        }
+
+        if (data === "alive") {
+            return bot.sendMessage(chatId, "💚 Bot Alive & Running!\nServer: Koyeb\nStatus: OK ✅");
+        }
+
+        if (data === "ping") {
+            const start = Date.now();
+            const sent = await bot.sendMessage(chatId, "📡 Checking ping...");
+            const end = Date.now();
+
+            return bot.editMessageText(
+                `📡 Ping: *${end - start}ms*`,
+                { chat_id: chatId, message_id: sent.message_id, parse_mode: "Markdown" }
+            );
+        }
+    } finally {
+        bot.answerCallbackQuery(query.id);
     }
-
-    if (query.data === "ig") {
-        return bot.sendMessage(chatId, "📱 Send the Instagram reel link:");
-    }
-
-    if (query.data === "enhance") {
-        return bot.sendMessage(chatId, "🖼 Send a photo to enhance quality:");
-    }
-
-    if (query.data === "song") {
-        return bot.sendMessage(chatId, "🎧 Send the YouTube link to extract MP3:");
-    }
-
-    if (query.data === "alive") {
-        return bot.sendMessage(chatId, "💚 Bot Alive & Working!\nServer: Koyeb\nStatus: OK ✅");
-    }
-
-    if (query.data === "ping") {
-        const start = Date.now();
-        const sent = await bot.sendMessage(chatId, "📡 Checking ping...");
-        const end = Date.now();
-        return bot.editMessageText(`📡 Ping: ${end - start} ms`, { chat_id: chatId, message_id: sent.message_id });
-    }
-
-    bot.answerCallbackQuery(query.id);
 });
 
-// Handle all messages for download placeholders
+// Message Handler
 bot.on("message", async (msg) => {
     if (!msg.text) return;
     const chatId = msg.chat.id;
@@ -61,13 +72,11 @@ bot.on("message", async (msg) => {
 
     // YouTube Link
     if (text.includes("youtube.com") || text.includes("youtu.be")) {
-        bot.sendMessage(chatId, "⏳ Downloading YouTube video...\n⚠ Feature code not added yet.");
-        return;
+        return bot.sendMessage(chatId, "⏳ YouTube Downloading...\n⚠ Feature not added yet.");
     }
 
-    // Insta Link
+    // Instagram Reel Link
     if (text.includes("instagram.com")) {
-        bot.sendMessage(chatId, "⏳ Downloading Instagram Reel...\n⚠ Feature code not added yet.");
-        return;
+        return bot.sendMessage(chatId, "⏳ Instagram Reel Downloading...\n⚠ Feature not added yet.");
     }
 });
