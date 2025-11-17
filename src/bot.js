@@ -1,4 +1,3 @@
-import TelegramBot from 'node-telegram-bot-api';
 import { mainMenu } from './menu.js';
 
 import { ytHandler } from './handlers/youtube.js';
@@ -8,8 +7,7 @@ import { songHandler } from './handlers/song.js';
 import { pingHandler } from './handlers/ping.js';
 import { aliveHandler } from './handlers/alive.js';
 
-export const startBot = () => {
-  const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+export const startBot = (bot) => {
 
   bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, "👋 Varu Makane !", mainMenu);
@@ -25,6 +23,7 @@ export const startBot = () => {
       case "song": return bot.sendMessage(chatId, "🎧 Send YouTube link for MP3");
       case "ping": return pingHandler(bot, chatId);
       case "alive": return aliveHandler(bot, chatId);
+      default: return;
     }
   });
 
