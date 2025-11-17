@@ -17,7 +17,7 @@ const mainMenu = {
 };
 
 bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, "👋 Welcome to the Multi-Feature Telegram Bot!\nChoose an option👇", mainMenu);
+    bot.sendMessage(msg.chat.id, "👋 Welcome to Sathanic tele bot the Multi-Feature Telegram Bot!\nChoose an option👇", mainMenu);
 });
 
 bot.on("callback_query", async (query) => {
