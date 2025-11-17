@@ -1,0 +1,14 @@
+{
+  "name": "telegram-multifunction-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot with YouTube downloader, Insta downloader, HD photo enhance, song downloader.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.61.0",
+    "axios": "^1.6.0"
+  }
+}
