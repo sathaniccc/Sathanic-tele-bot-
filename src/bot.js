@@ -25,7 +25,6 @@ export const startBot = () => {
       case "song": return bot.sendMessage(chatId, "🎧 Send YouTube link for MP3");
       case "ping": return pingHandler(bot, chatId);
       case "alive": return aliveHandler(bot, chatId);
-      default: return;
     }
   });
 
